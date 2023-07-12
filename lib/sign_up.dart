@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import 'app_bar.dart';
-import 'text_field.dart';
+import 'reusable_widgets.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   // List<String> _selectedFaculties = []; // Store the selected faculties
   String? _dropdownValue; // Store the selected value
   String? _dropdownValue2;
+  String? _dropdownValue3;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/logo.jpeg'),
+            opacity: 0.1,
             fit: BoxFit.contain,
             alignment: Alignment.center,
           ),
@@ -105,8 +107,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   dropdownCallback2,
                 ),
                 const SizedBox(height: 20),
+                reusableDropdownButton(
+                  "Select Department",
+                  _dropdownValue3,
+                  Icons.add_business_outlined,
+                  [
+                    const DropdownMenuItem(
+                      value: "none",
+                      child: Text('none'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "ACCOUNTING AND AUDITING",
+                      child: Text('ACCOUNTING AND AUDITING'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "AFRICAN LANGUAGES & CULTURE",
+                      child: Text('AFRICAN LANGUAGES & CULTURE'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "AGRICULTURE",
+                      child: Text('AGRICULTURE'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "ANTHROPOLOGY",
+                      child: Text('ANTHROPOLOGY'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "ANTHROPOLOGY&DEVELOPMENT ST",
+                      child: Text('ANTHROPOLOGY & DEVELOPMENT ST'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "ARTS & LANGUAGES EDUCATION",
+                      child: Text('ARTS & LANGUAGES EDUCATION'),
+                    ),
+                    const DropdownMenuItem(
+                      value: "BIOCHEMISTRY AND MICROBIOLOGY",
+                      child: Text('BIOCHEMISTRY AND MICROBIOLOGY'),
+                    ),
+                  ],
+                  dropdownCallback3,
+                ),
+                const SizedBox(height: 20),
                 reusableTextField(
-                  "Enter UserName",
+                  "Enter Student/Staff NO",
                   Icons.person_outline,
                   false,
                   _userNameTextController,
@@ -166,6 +209,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       setState(() {
         _dropdownValue2 = selectedValue2;
         print(_dropdownValue2);
+      });
+    }
+  }
+
+  void dropdownCallback3(String? selectedValue3) {
+    if (selectedValue3 is String) {
+      setState(() {
+        _dropdownValue3 = selectedValue3;
+        print(_dropdownValue3);
       });
     }
   }

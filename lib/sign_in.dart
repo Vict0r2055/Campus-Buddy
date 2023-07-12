@@ -1,11 +1,10 @@
 import 'package:campus_buddy/home_page.dart';
-import 'package:campus_buddy/text_field.dart';
+import 'package:campus_buddy/navigation_page.dart';
+import 'package:campus_buddy/reusable_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-
 import 'app_bar.dart';
-import 'bottom_nav.dart';
+// import 'bottom_nav.dart';
 import 'reset_password.dart';
 import 'sign_up.dart';
 
@@ -24,22 +23,21 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(),
-      drawer: const NavBar(),
-      bottomNavigationBar: const BottomNavigation(),
+      // drawer: const NavBar(),
+      // bottomNavigationBar: const BottomNavigation(),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
             child: Column(
               children: <Widget>[
                 logoWidget("images/logo.jpeg"),
-                const SizedBox(
-                  height: 35,
-                ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                // const SizedBox(
+                //   height: 35,
+                // ),
+                reusableTextField("Email ID:", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -50,6 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 5,
                 ),
                 forgetPassword(context),
+
                 firebaseUIButton(context, "Sign In", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
@@ -64,7 +63,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     print("Error ${error.toString()}");
                   });
                 }),
-                signUpOption()
+                const SizedBox(
+                  height: 20,
+                ),
+                firebaseUIButton(
+                  context,
+                  "Visitors",
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NavigationPage()));
+                  },
+                ),
+                signUpOption(),
               ],
             ),
           ),
@@ -93,6 +105,29 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
+  Row vistorOption() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("For vistor's click here?",
+            style: TextStyle(color: Colors.blue)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NavigationPage()));
+          },
+          child: const Text(
+            " Visitor",
+            style: TextStyle(
+                color: Color(0xFF157D9E), fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget forgetPassword(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -101,7 +136,7 @@ class _SignInScreenState extends State<SignInScreen> {
       child: TextButton(
         child: const Text(
           "Forgot Password?",
-          style: TextStyle(color: Colors.white70),
+          style: TextStyle(color: Colors.blue),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.push(context,

@@ -14,9 +14,17 @@ class NavBar extends StatelessWidget {
             accountName: Text('oihehdeded'),
             accountEmail: Text('eedqwiuhww@gmail.com'),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.blue,
-              child: Text('DB'),
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage('assets/images/profile.jpg'),
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.info_outline),
+            title: const Text('My Modules'),
+            onTap: () {
+              // Navigate to the About page
+              Navigator.pushNamed(context, '/my_modules');
+            },
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),

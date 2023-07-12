@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "37080143512",
+    "firebase_url": "https://campus-buddy-de1dd-default-rtdb.firebaseio.com",
     "project_id": "campus-buddy-de1dd",
     "storage_bucket": "campus-buddy-de1dd.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "37080143512-uqgi996snfbeev5129049mhrn3k56qsp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "37080143512-fgtt43hcl8cbnarp73p6ec6cpd31o0hr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.campusBuddy"
+              }
             }
           ]
         }

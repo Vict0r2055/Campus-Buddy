@@ -1,4 +1,4 @@
-import 'package:campus_buddy/text_field.dart';
+import 'package:campus_buddy/reusable_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';

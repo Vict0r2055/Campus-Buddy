@@ -1,5 +1,6 @@
 import 'package:campus_buddy/about_page.dart';
 import 'package:campus_buddy/admin_panel.dart';
+import 'package:campus_buddy/my_modules.dart';
 import 'package:campus_buddy/sign_in.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
@@ -11,10 +12,17 @@ import 'my_timetable.dart';
 import 'examinations.dart';
 import 'chatbot.dart';
 import 'app_bar.dart';
+// Import the generated file
+import 'firebase_options.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // String? databaseURL = DefaultFirebaseOptions.currentPlatform.databaseURL;
+  // scrapeWebsite();
+
   runApp(const MyApp());
 }
 
@@ -39,6 +47,7 @@ class MyApp extends StatelessWidget {
       // home: const MyHomePage(),
       home: const SignInScreen(),
       routes: {
+        '/my_modules': (context) => const MyModules(),
         '/home_page': (context) => const HomePage(),
         '/my_timetable': (context) => const MyTimetable(),
         '/examinations': (context) => const ExaminationsPage(),

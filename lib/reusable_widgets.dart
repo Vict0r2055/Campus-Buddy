@@ -50,11 +50,6 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
       onPressed: () {
         onTap();
       },
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
-      ),
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
@@ -64,6 +59,11 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+      child: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     ),
   );
 }
@@ -98,63 +98,100 @@ DropdownButtonFormField<String> reusableDropdownButton(
   );
 }
 
-// MultiSelectFormField<String> reusableMultiSelectDropdownButton(
-//     String labelText,
-//     List<String> selectedValues,
-//     List<DropdownMenuItem<String>> items,
-//     Function(dynamic) onChanged) {
-//   return MultiSelectFormField(
-//     autovalidate: AutovalidateMode.onUserInteraction,
-//     chipBackGroundColor: Colors.blue.withOpacity(0.3),
-//     chipLabelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
-//     dialogTextStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
-//     checkBoxActiveColor: Colors.white70,
-//     checkBoxCheckColor: Colors.white.withOpacity(0.9),
-//     dialogShapeBorder: const RoundedRectangleBorder(
-//       borderRadius: BorderRadius.all(Radius.circular(12.0)),
-//     ),
-//     title: Text(
-//       labelText,
-//       style: TextStyle(color: Colors.white.withOpacity(0.9)),
-//     ),
-//     validator: (value) {
-//       if (value == null || value.isEmpty) {
-//         return 'Please select at least one option';
-//       }
-//       return null;
-//     },
-//     dataSource: items.map((item) {
-//       return {"display": item.child, "value": item.value};
-//     }).toList(),
-//     textFieldBuilder: (controller, focusNode) {
-//       return reusableTextField(
-//         labelText,
-//         Icons.arrow_drop_down,
-//         false,
-//         controller,
-//       );
-//     },
-//     initialValue: selectedValues,
-//     onSaved: onChanged,
-//   );
-// }
+void showCustomSnackbar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Container(
+        height: 50,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      duration: const Duration(seconds: 1),
+      behavior: SnackBarBehavior.floating,
+      elevation: 0,
+    ),
+  );
+}
 
-// // Inside _SignUpScreenState
-// List<DropdownMenuItem<String>> _facultyDropdownItems = [
-//   const DropdownMenuItem(
-//     value: "Faculty of Science & Agriculture",
-//     child: Text('Faculty of Science & Agriculture'),
-//   ),
-//   const DropdownMenuItem(
-//     value: "Faculty of Education",
-//     child: Text('Faculty of Education'),
-//   ),
-//   const DropdownMenuItem(
-//     value: "Faculty of Arts",
-//     child: Text('Faculty of Arts'),
-//   ),
-//   const DropdownMenuItem(
-//     value: "Faculty of Commerce, Administration & Law",
-//     child: Text('Faculty of Commerce, Administration & Law'),
-//   ),
-// ];
+class DayTabBar extends StatefulWidget {
+  const DayTabBar({Key? key}) : super(key: key);
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _DayTabBarState createState() => _DayTabBarState();
+}
+
+class _DayTabBarState extends State<DayTabBar>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 5, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Days of the Week'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(text: 'Monday'),
+            Tab(text: 'Tuesday'),
+            Tab(text: 'Wednesday'),
+            Tab(text: 'Thursday'),
+            Tab(text: 'Friday'),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          // Monday Tab Content
+          DayTabContent(day: 'Monday'),
+          // Tuesday Tab Content
+          DayTabContent(day: 'Tuesday'),
+          // Wednesday Tab Content
+          DayTabContent(day: 'Wednesday'),
+          // Thursday Tab Content
+          DayTabContent(day: 'Thursday'),
+          // Friday Tab Content
+          DayTabContent(day: 'Friday'),
+        ],
+      ),
+    );
+  }
+}
+
+class DayTabContent extends StatelessWidget {
+  final String day;
+
+  const DayTabContent({Key? key, required this.day}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(day),
+    );
+  }
+}

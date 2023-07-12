@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '37080143512',
     projectId: 'campus-buddy-de1dd',
     authDomain: 'campus-buddy-de1dd.firebaseapp.com',
+    databaseURL: 'https://campus-buddy-de1dd-default-rtdb.firebaseio.com',
     storageBucket: 'campus-buddy-de1dd.appspot.com',
     measurementId: 'G-7296YDVQGS',
   );
@@ -61,6 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:37080143512:android:f429c870abf3020704e2ed',
     messagingSenderId: '37080143512',
     projectId: 'campus-buddy-de1dd',
+    databaseURL: 'https://campus-buddy-de1dd-default-rtdb.firebaseio.com',
     storageBucket: 'campus-buddy-de1dd.appspot.com',
   );
 
@@ -69,6 +71,7 @@ class DefaultFirebaseOptions {
     appId: '1:37080143512:ios:a84a3a371a0900e004e2ed',
     messagingSenderId: '37080143512',
     projectId: 'campus-buddy-de1dd',
+    databaseURL: 'https://campus-buddy-de1dd-default-rtdb.firebaseio.com',
     storageBucket: 'campus-buddy-de1dd.appspot.com',
     iosClientId: '37080143512-fgtt43hcl8cbnarp73p6ec6cpd31o0hr.apps.googleusercontent.com',
     iosBundleId: 'com.example.campusBuddy',

@@ -26,7 +26,7 @@ class BottomNavigation extends StatelessWidget {
                   context: context,
                   icon: Icon(
                     Icons.home_outlined,
-                    size: 40,
+                    size: 35,
                     color: getCurrentRoute() == '/home_page'
                         ? Colors.blue
                         : Colors.grey,
@@ -42,7 +42,7 @@ class BottomNavigation extends StatelessWidget {
                   context: context,
                   icon: Icon(
                     Icons.calendar_month_outlined,
-                    size: 40,
+                    size: 35,
                     color: getCurrentRoute() == '/my_timetable'
                         ? Colors.blue
                         : Colors.grey,
@@ -58,7 +58,7 @@ class BottomNavigation extends StatelessWidget {
                   context: context,
                   icon: Icon(
                     Icons.assignment_outlined,
-                    size: 40,
+                    size: 35,
                     color: getCurrentRoute() == '/examinations'
                         ? Colors.blue
                         : Colors.grey,
@@ -74,7 +74,7 @@ class BottomNavigation extends StatelessWidget {
                   context: context,
                   icon: Icon(
                     Icons.navigation_outlined,
-                    size: 40,
+                    size: 35,
                     color: getCurrentRoute() == '/navigation_page'
                         ? Colors.blue
                         : Colors.grey,
@@ -90,7 +90,7 @@ class BottomNavigation extends StatelessWidget {
                   context: context,
                   icon: Icon(
                     Icons.chat_outlined,
-                    size: 40,
+                    size: 35,
                     color: getCurrentRoute() == '/chatbot'
                         ? Colors.blue
                         : Colors.grey,
