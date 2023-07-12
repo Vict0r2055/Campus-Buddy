@@ -131,51 +131,60 @@ class _MyTimetableState extends State<MyTimetable> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: _currentDayIndex,
-      length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+        return false; // Prevents the app from exiting
+      },
+      child: DefaultTabController(
+        initialIndex: _currentDayIndex,
+        length: 5,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+            ),
+            title: const Text('Daily Planner'),
+            bottom: const TabBar(
+              tabs: [
+                Tab(text: 'Mon'),
+                Tab(text: 'Tue'),
+                Tab(text: 'Wed'),
+                Tab(text: 'Thu'),
+                Tab(text: 'Fri'),
+              ],
+            ),
+          ),
+          body: FutureBuilder<List<Event>>(
+            future: _eventsFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final events = snapshot.data!;
+                return TabBarView(
+                  children: [
+                    _buildTabContent(events, '0'),
+                    _buildTabContent(events, '1'),
+                    _buildTabContent(events, '2'),
+                    _buildTabContent(events, '3'),
+                    _buildTabContent(events, '4'),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
             },
           ),
-          title: const Text('Daily Planner'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Mon'),
-              Tab(text: 'Tue'),
-              Tab(text: 'Wed'),
-              Tab(text: 'Thu'),
-              Tab(text: 'Fri'),
-            ],
-          ),
-        ),
-        body: FutureBuilder<List<Event>>(
-          future: _eventsFuture,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final events = snapshot.data!;
-              return TabBarView(
-                children: [
-                  _buildTabContent(events, '0'),
-                  _buildTabContent(events, '1'),
-                  _buildTabContent(events, '2'),
-                  _buildTabContent(events, '3'),
-                  _buildTabContent(events, '4'),
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
         ),
       ),
     );
