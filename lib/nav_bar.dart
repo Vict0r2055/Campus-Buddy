@@ -7,12 +7,16 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color.fromARGB(141, 131, 134, 135),
+      // backgroundColor: const Color.fromARGB(141, 131, 134, 135),
       child: ListView(
         children: [
           const UserAccountsDrawerHeader(
             accountName: Text('oihehdeded'),
             accountEmail: Text('eedqwiuhww@gmail.com'),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: Text('DB'),
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),

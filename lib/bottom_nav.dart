@@ -13,69 +13,94 @@ class BottomNavigation extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            BottomNavigationItem(
-              context: context,
-              icon: Icon(
-                Icons.home_outlined,
-                size: 40,
-                color: getCurrentRoute() == '/home_page'
-                    ? Colors.blue
-                    : Colors.grey,
+        child: Padding(
+          padding:
+              const EdgeInsets.only(bottom: 16.0), // Add bottom padding here
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.home_outlined,
+                    size: 40,
+                    color: getCurrentRoute() == '/home_page'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'Home',
+                  routeName: '/home_page',
+                ),
               ),
-              label: 'Home',
-              routeName: '/home_page',
-            ),
-            BottomNavigationItem(
-              context: context,
-              icon: Icon(
-                Icons.calendar_month_outlined,
-                size: 40,
-                color: getCurrentRoute() == '/my_timetable'
-                    ? Colors.blue
-                    : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.calendar_month_outlined,
+                    size: 40,
+                    color: getCurrentRoute() == '/my_timetable'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'My Timetable',
+                  routeName: '/my_timetable',
+                ),
               ),
-              label: 'My Timetable',
-              routeName: '/my_timetable',
-            ),
-            BottomNavigationItem(
-              context: context,
-              icon: Icon(
-                Icons.assignment_outlined,
-                size: 40,
-                color: getCurrentRoute() == '/examinations'
-                    ? Colors.blue
-                    : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.assignment_outlined,
+                    size: 40,
+                    color: getCurrentRoute() == '/examinations'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'Examinations',
+                  routeName: '/examinations',
+                ),
               ),
-              label: 'Examinations',
-              routeName: '/examinations',
-            ),
-            BottomNavigationItem(
-              context: context,
-              icon: Icon(
-                Icons.navigation_outlined,
-                size: 40,
-                color: getCurrentRoute() == '/navigation_page'
-                    ? Colors.blue
-                    : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.navigation_outlined,
+                    size: 40,
+                    color: getCurrentRoute() == '/navigation_page'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'Navigation',
+                  routeName: '/navigation_page',
+                ),
               ),
-              label: 'Navigation',
-              routeName: '/navigation_page',
-            ),
-            BottomNavigationItem(
-              context: context,
-              icon: Icon(
-                Icons.chat_outlined,
-                size: 40,
-                color:
-                    getCurrentRoute() == '/chatbot' ? Colors.blue : Colors.grey,
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.chat_outlined,
+                    size: 40,
+                    color: getCurrentRoute() == '/chatbot'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'Chatbot',
+                  routeName: '/chatbot',
+                ),
               ),
-              label: 'Chatbot',
-              routeName: '/chatbot',
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -89,12 +114,12 @@ class BottomNavigationItem extends StatelessWidget {
   final String routeName;
 
   const BottomNavigationItem({
-    super.key,
+    Key? key, // Add the Key parameter
     required this.context,
     required this.icon,
     required this.label,
     required this.routeName,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

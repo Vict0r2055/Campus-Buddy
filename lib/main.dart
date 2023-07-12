@@ -1,5 +1,8 @@
 import 'package:campus_buddy/about_page.dart';
 import 'package:campus_buddy/admin_panel.dart';
+import 'package:campus_buddy/sign_in.dart';
+// ignore: unused_import
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:campus_buddy/bottom_nav.dart';
 import 'navigation_Page.dart';
@@ -9,7 +12,9 @@ import 'examinations.dart';
 import 'chatbot.dart';
 import 'app_bar.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -31,7 +36,8 @@ class MyApp extends StatelessWidget {
           toolbarHeight: 40,
         ),
       ),
-      home: const MyHomePage(),
+      // home: const MyHomePage(),
+      home: const SignInScreen(),
       routes: {
         '/home_page': (context) => const HomePage(),
         '/my_timetable': (context) => const MyTimetable(),
@@ -56,8 +62,20 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        appBar: MyAppBar(),
-        drawer: NavBar(),
-        bottomNavigationBar: BottomNavigation());
+      appBar: MyAppBar(),
+      drawer: NavBar(),
+      bottomNavigationBar: BottomNavigation(),
+      // body:
+      // Container(
+      //   decoration: const BoxDecoration(
+      //     image: DecorationImage(
+      //       image: AssetImage('images/logo.jpeg'),
+      //       fit: BoxFit.contain,
+      //       alignment: Alignment.center,
+      //     ),
+      //   ),
+
+      // )
+    );
   }
 }
