@@ -14,8 +14,7 @@ class BottomNavigation extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.only(bottom: 16.0), // Add bottom padding here
+          padding: const EdgeInsets.all(8), // Add bottom padding here
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -28,7 +27,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.home_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/home_page'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Home',
@@ -44,7 +43,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.assignment_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/my_timetable'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'My Timetable',
@@ -60,7 +59,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.calendar_month_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/examinations'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Calendar',
@@ -76,7 +75,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.chat_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/chatbot'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Chatbot',
@@ -92,7 +91,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.settings_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/navigation_page'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Settings',
@@ -134,7 +133,9 @@ class BottomNavigationItem extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: getCurrentRoute() == routeName ? Colors.blue : Colors.grey,
+              color: getCurrentRoute() == routeName
+                  ? const Color(0xFF157D9E)
+                  : Colors.grey,
             ),
           ),
         ],

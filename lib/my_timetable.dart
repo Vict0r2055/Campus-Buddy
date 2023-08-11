@@ -2,6 +2,7 @@ import 'package:campus_buddy/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:campus_buddy/my_modules.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:campus_buddy/bottom_nav.dart';
 
 class MyTimetable extends StatefulWidget {
   const MyTimetable({Key? key}) : super(key: key);
@@ -123,6 +124,7 @@ class _MyTimetableState extends State<MyTimetable> {
                   ],
                 )
               : const Center(child: CircularProgressIndicator()),
+          bottomNavigationBar: const BottomNavigation(),
         ),
       ),
     );
