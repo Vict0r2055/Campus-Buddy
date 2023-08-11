@@ -96,6 +96,12 @@ class _MyTimetableState extends State<MyTimetable> {
               },
             ),
             title: const Text('Daily Planner'),
+            // actions: [
+            //   ElevatedButton(
+            //     onPressed: fetchEvents,
+            //     child: const Text('Refresh'),
+            //   ),
+            // ],
             bottom: const TabBar(
               tabs: [
                 Tab(text: 'Mon'),
@@ -116,15 +122,7 @@ class _MyTimetableState extends State<MyTimetable> {
                     _buildTabContent(events, '4'),
                   ],
                 )
-              : const Row(
-                  children: [
-                    Center(child: CircularProgressIndicator()),
-                    Text(
-                      'please select modules',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              : const Center(child: CircularProgressIndicator()),
         ),
       ),
     );

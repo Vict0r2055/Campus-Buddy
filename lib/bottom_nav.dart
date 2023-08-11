@@ -41,7 +41,7 @@ class BottomNavigation extends StatelessWidget {
                 child: BottomNavigationItem(
                   context: context,
                   icon: Icon(
-                    Icons.calendar_month_outlined,
+                    Icons.assignment_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/my_timetable'
                         ? Colors.blue
@@ -57,30 +57,14 @@ class BottomNavigation extends StatelessWidget {
                 child: BottomNavigationItem(
                   context: context,
                   icon: Icon(
-                    Icons.assignment_outlined,
+                    Icons.calendar_month_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/examinations'
                         ? Colors.blue
                         : Colors.grey,
                   ),
-                  label: 'Examinations',
+                  label: 'Calendar',
                   routeName: '/examinations',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 8.0), // Add bottom padding here
-                child: BottomNavigationItem(
-                  context: context,
-                  icon: Icon(
-                    Icons.navigation_outlined,
-                    size: 35,
-                    color: getCurrentRoute() == '/navigation_page'
-                        ? Colors.blue
-                        : Colors.grey,
-                  ),
-                  label: 'Navigation',
-                  routeName: '/navigation_page',
                 ),
               ),
               Padding(
@@ -97,6 +81,22 @@ class BottomNavigation extends StatelessWidget {
                   ),
                   label: 'Chatbot',
                   routeName: '/chatbot',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    size: 35,
+                    color: getCurrentRoute() == '/navigation_page'
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  label: 'Settings',
+                  routeName: 'navigation_page',
                 ),
               ),
             ],

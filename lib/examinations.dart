@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ExaminationsPage extends StatelessWidget {
-  const ExaminationsPage({super.key});
+  const ExaminationsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ExaminationsPage extends StatelessWidget {
             children: [
               TableCalendar(
                 calendarFormat: CalendarFormat.month,
-                firstDay: DateTime.utc(2022, 11, 9),
+                firstDay: DateTime.utc(2022, 10, 13),
                 focusedDay: DateTime.now(),
                 lastDay: DateTime.utc(2030, 12, 9),
                 startingDayOfWeek: StartingDayOfWeek.monday,

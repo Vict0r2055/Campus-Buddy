@@ -7,11 +7,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: MyAppBar(),
       drawer: NavBar(),
       bottomNavigationBar: BottomNavigation(),
-      body: Text('Home'),
+      body: Container(
+        // Wrap the body in a Container to set the background color
+        color: Colors.black26, // Set your desired background color here
+        child: Center(
+          child: Text('Home'),
+        ),
+      ),
     );
   }
 }
