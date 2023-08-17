@@ -12,9 +12,13 @@ import 'my_timetable.dart';
 import 'examinations.dart';
 import 'app_bar.dart';
 import 'firebase_options.dart';
+// import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(EventAdapter());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 // import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'dart:convert';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:xml/xml.dart';
 import 'package:hive/hive.dart';
+import 'package:campus_buddy/reusable_widgets.dart';
 
 class Item {
   final String name;
@@ -106,7 +109,7 @@ class _MyModulesState extends State<MyModules> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // print(fileNames);
-          downloadEventsFromStorage(fileNames);
+          downloadEventsFromStorage(fileNames, context);
         },
         child: const Icon(Icons.done),
       ),
@@ -175,7 +178,7 @@ Future<void> saveEventsToHive(List<Event> events) async {
 Future<List<Event>> getEventsFromHive() async {
   final eventsBox = await Hive.openBox('events');
   List<Event> events = eventsBox.values.toList().cast<Event>();
-  // printing(events);
+  printing(events);
   // print("i got thembags");
   return events;
 }
@@ -189,7 +192,8 @@ void printing(events) {
   });
 }
 
-Future<List<Event>> downloadEventsFromStorage(List<String> fileNames) async {
+Future<List<Event>> downloadEventsFromStorage(
+    List<String> fileNames, BuildContext context) async {
   final storage = FirebaseStorage.instance;
   List<Event> events = [];
   print("boy doing things");
@@ -218,7 +222,9 @@ Future<List<Event>> downloadEventsFromStorage(List<String> fileNames) async {
     }
   }
   print("never in doubt ");
+  showCustomSnackbar(context, "never in doubt ");
   saveEventsToHive(events);
+  showCustomSnackbar(context, "weeee ayii iqedile boi ayikasebenzi namanje");
   print("weeee ayii iqedile boi ayikasebenzi namanje");
   return events;
 }
