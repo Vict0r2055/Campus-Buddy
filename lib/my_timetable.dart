@@ -87,23 +87,24 @@ class _MyTimetableState extends State<MyTimetable> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
+            backgroundColor: const Color(0xFF157D9E),
+            centerTitle: true,
+            iconTheme: const IconThemeData(color: Colors.white),
+            title: const Padding(
+              padding: EdgeInsets.all(4),
+              child: Text(
+                'CAMPUS BUDDY',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
             ),
-            title: const Text('Daily Planner'),
-            // actions: [
-            //   ElevatedButton(
-            //     onPressed: fetchEvents,
-            //     child: const Text('Refresh'),
-            //   ),
-            // ],
             bottom: const TabBar(
+              labelColor:
+                  Colors.white, // Change the color of the selected tab text
+              unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(text: 'Mon'),
                 Tab(text: 'Tue'),
