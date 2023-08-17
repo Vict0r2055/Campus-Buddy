@@ -14,8 +14,7 @@ class BottomNavigation extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.only(bottom: 16.0), // Add bottom padding here
+          padding: const EdgeInsets.all(8), // Add bottom padding here
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -28,7 +27,7 @@ class BottomNavigation extends StatelessWidget {
                     Icons.home_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/home_page'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Home',
@@ -41,10 +40,10 @@ class BottomNavigation extends StatelessWidget {
                 child: BottomNavigationItem(
                   context: context,
                   icon: Icon(
-                    Icons.calendar_month_outlined,
+                    Icons.assignment_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/my_timetable'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'My Timetable',
@@ -57,30 +56,14 @@ class BottomNavigation extends StatelessWidget {
                 child: BottomNavigationItem(
                   context: context,
                   icon: Icon(
-                    Icons.assignment_outlined,
+                    Icons.calendar_month_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/examinations'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
-                  label: 'Examinations',
+                  label: 'Calendar',
                   routeName: '/examinations',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 8.0), // Add bottom padding here
-                child: BottomNavigationItem(
-                  context: context,
-                  icon: Icon(
-                    Icons.navigation_outlined,
-                    size: 35,
-                    color: getCurrentRoute() == '/navigation_page'
-                        ? Colors.blue
-                        : Colors.grey,
-                  ),
-                  label: 'Navigation',
-                  routeName: '/navigation_page',
                 ),
               ),
               Padding(
@@ -92,11 +75,27 @@ class BottomNavigation extends StatelessWidget {
                     Icons.chat_outlined,
                     size: 35,
                     color: getCurrentRoute() == '/chatbot'
-                        ? Colors.blue
+                        ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
                   label: 'Chatbot',
                   routeName: '/chatbot',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    size: 35,
+                    color: getCurrentRoute() == '/navigation_page'
+                        ? const Color(0xFF157D9E)
+                        : Colors.grey,
+                  ),
+                  label: 'Settings',
+                  routeName: 'navigation_page',
                 ),
               ),
             ],
@@ -134,7 +133,9 @@ class BottomNavigationItem extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: getCurrentRoute() == routeName ? Colors.blue : Colors.grey,
+              color: getCurrentRoute() == routeName
+                  ? const Color(0xFF157D9E)
+                  : Colors.grey,
             ),
           ),
         ],

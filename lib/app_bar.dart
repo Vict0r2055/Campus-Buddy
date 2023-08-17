@@ -11,52 +11,21 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      title: const Padding(
-        padding: EdgeInsets.only(top: 12.0),
-        child: Text(
-          'CAMPUS BUDDY',
-          style: TextStyle(
-            color: Color(0xFF157D9E),
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+        backgroundColor: const Color(0xFF157D9E),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Padding(
+          padding: EdgeInsets.all(4),
+          child: Text(
+            'CAMPUS BUDDY',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MyAppBarWithDrawer extends StatelessWidget
-    implements PreferredSizeWidget {
-  const MyAppBarWithDrawer({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      centerTitle: true,
-      title: const Text(
-        'CAMPUS BUDDY',
-        style: TextStyle(
-          color: Color(0xFF157D9E),
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-        ),
-      ],
-    );
+        );
   }
 }
 
@@ -67,12 +36,12 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // backgroundColor: const Color.fromARGB(141, 131, 134, 135),
+      backgroundColor: Colors.black12,
       child: ListView(
         children: [
           const UserAccountsDrawerHeader(
-            accountName: Text('oihehdeded'),
-            accountEmail: Text('eedqwiuhww@gmail.com'),
+            accountName: Text('luyanda mpanza'),
+            accountEmail: Text('luyasmpanza@gmail.com'),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.transparent,
               backgroundImage: AssetImage('images/profile.jpg'),

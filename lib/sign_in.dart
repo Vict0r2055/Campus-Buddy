@@ -66,16 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(
-                  context,
-                  "Visitors",
-                  () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NavigationPage()));
-                  },
-                ),
+                vistorOption(),
                 signUpOption(),
               ],
             ),
