@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         '/my_timetable': (context) => const MyTimetable(),
         '/examinations': (context) => ExaminationsPage(),
         '/navigation_page': (context) => const NavigationPage(),
-        '/chatbot': (context) => ChatScreen(),
+        '/chatbot': (context) => const ChatScreen(),
         '/about_page': (context) => const AboutPage(),
         '/admin_panel': (context) => const AdminPage(),
       },

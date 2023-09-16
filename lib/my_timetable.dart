@@ -83,7 +83,7 @@ class _MyTimetableState extends State<MyTimetable> {
         return false; // Prevents the app from exiting
       },
       child: DefaultTabController(
-        initialIndex: _currentDayIndex,
+        initialIndex: _currentDayIndex <= 4 ? _currentDayIndex : 4,
         length: 5,
         child: Scaffold(
           appBar: AppBar(
