@@ -4,6 +4,8 @@ import 'package:campus_buddy/my_modules.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:campus_buddy/bottom_nav.dart';
 
+import 'nav_bar.dart';
+
 class MyTimetable extends StatefulWidget {
   const MyTimetable({Key? key}) : super(key: key);
 
@@ -83,7 +85,7 @@ class _MyTimetableState extends State<MyTimetable> {
         return false; // Prevents the app from exiting
       },
       child: DefaultTabController(
-        initialIndex: _currentDayIndex,
+        initialIndex: _currentDayIndex <= 4 ? _currentDayIndex : 4,
         length: 5,
         child: Scaffold(
           appBar: AppBar(
@@ -114,6 +116,7 @@ class _MyTimetableState extends State<MyTimetable> {
               ],
             ),
           ),
+          drawer: const NavBar(),
           body: events.isNotEmpty
               ? TabBarView(
                   children: [
