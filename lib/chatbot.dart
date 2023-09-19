@@ -77,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<void> sendChatbotRequest(String load) async {
     // Define the URL of your Flask chatbot endpoint
-    var url = Uri.parse('http://192.168.56.1:5000/api/chatbot');
+    var url = Uri.parse('http://ec2-16-171-177-132.eu-north-1.compute.amazonaws.com:5000/api/chatbot');
 
     // Define the input text in a map
     var payload = {'input_text': load};
@@ -130,6 +130,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(),
+      drawer: const NavBar(),
       body: Column(
         children: <Widget>[
           Flexible(
