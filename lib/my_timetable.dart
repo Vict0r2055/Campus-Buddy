@@ -89,7 +89,7 @@ class _MyTimetableState extends State<MyTimetable> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color(0xFF157D9E),
+            backgroundColor: const Color.fromARGB(255, 0, 97, 175),
             centerTitle: true,
             iconTheme: const IconThemeData(color: Colors.white),
             title: const Padding(

@@ -72,7 +72,7 @@ class _ExaminationsPageState extends State<ExaminationsPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color(0xFF157D9E),
+            backgroundColor: const Color.fromARGB(255, 0, 97, 175),
             centerTitle: true,
             iconTheme: const IconThemeData(color: Colors.white),
             title: const Padding(
@@ -150,7 +150,7 @@ class _ExaminationsPageState extends State<ExaminationsPage> {
             },
             tooltip: 'Adding events to calendar',
             child: const Icon(Icons.add),
-            backgroundColor: const Color(0xFF157D9E),
+            backgroundColor: const Color.fromARGB(255, 0, 97, 175),
           ),
           bottomNavigationBar: const BottomNavigation(),
         ),
