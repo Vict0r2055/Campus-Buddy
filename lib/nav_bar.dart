@@ -7,15 +7,18 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // backgroundColor: const Color.fromARGB(141, 131, 134, 135),
+      backgroundColor: const Color.fromARGB(255, 0, 97, 175),
       child: ListView(
-        children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('oihehdeded'),
-            accountEmail: Text('eedqwiuhww@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
+        children: <Widget>[
+          Container(
+            color: const Color.fromARGB(255, 0, 97, 175),
+            child: const UserAccountsDrawerHeader(
+              accountName: Text('oihehdeded'),
+              accountEmail: Text('eedqwiuhww@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage('assets/images/profile.jpg'),
+              ),
             ),
           ),
           ListTile(

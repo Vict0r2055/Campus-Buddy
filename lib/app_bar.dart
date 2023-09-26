@@ -11,21 +11,21 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: const Color(0xFF157D9E),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Padding(
-          padding: EdgeInsets.all(4),
-          child: Text(
-            'CAMPUS BUDDY',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+      backgroundColor: const Color.fromARGB(255, 0, 97, 175),
+      centerTitle: true,
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: const Padding(
+        padding: EdgeInsets.all(4),
+        child: Text(
+          'CAMPUS BUDDY',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
           ),
         ),
-        );
+      ),
+    );
   }
 }
 
@@ -36,17 +36,28 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.white,
       child: ListView(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('luyanda mpanza'),
-            accountEmail: Text('luyasmpanza@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              backgroundImage: AssetImage('images/profile.jpg'),
+          Container(
+            color: const Color.fromARGB(255, 0, 97, 175),
+            child: const UserAccountsDrawerHeader(
+              accountName: Text('luyanda mpanza'),
+              accountEmail: Text('luyasmpanza@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage('images/profile.jpg'),
+              ),
             ),
           ),
+          // const UserAccountsDrawerHeader(
+          //   accountName: Text('luyanda mpanza'),
+          //   accountEmail: Text('luyasmpanza@gmail.com'),
+          //   currentAccountPicture: CircleAvatar(
+          //     backgroundColor: Colors.transparent,
+          //     backgroundImage: AssetImage('images/profile.jpg'),
+          //   ),
+          // ),
           ListTile(
             leading: const Icon(Icons.menu_book_outlined),
             title: const Text('My Modules'),
