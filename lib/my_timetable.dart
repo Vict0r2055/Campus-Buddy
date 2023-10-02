@@ -1,13 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:campus_buddy/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:campus_buddy/my_modules.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:campus_buddy/bottom_nav.dart';
-
-import 'nav_bar.dart';
+import 'app_bar.dart';
 
 class MyTimetable extends StatefulWidget {
   const MyTimetable({Key? key}) : super(key: key);
+  // final Function(List<Event>) rebuildCallback;
+
+  // const MyTimetable({Key? key, required this.rebuildCallback}) : super(key: key);
 
   @override
   _MyTimetableState createState() => _MyTimetableState();

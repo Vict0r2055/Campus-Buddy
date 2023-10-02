@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:campus_buddy/bottom_nav.dart';
 import 'chatbot.dart';
-import 'navigation_Page.dart';
 import 'home_page.dart';
 import 'my_timetable.dart';
 import 'examinations.dart';
@@ -14,6 +13,7 @@ import 'app_bar.dart';
 import 'firebase_options.dart';
 // import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'qr_scanner.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,11 +50,12 @@ class MyApp extends StatelessWidget {
         '/my_modules': (context) => const MyModules(),
         '/home_page': (context) => const HomePage(),
         '/my_timetable': (context) => const MyTimetable(),
-        '/examinations': (context) => ExaminationsPage(),
-        '/navigation_page': (context) => const NavigationPage(),
+        '/examinations': (context) => const CalendarScreen(),
+        '/qr_scanner': (context) => const QRCodeScannerPage(),
         '/chatbot': (context) => const ChatScreen(),
         '/about_page': (context) => const AboutPage(),
         '/admin_panel': (context) => const AdminPage(),
+        // '/qr_scanner': (context) => const QRCodeScannerPage(),
       },
     );
   }

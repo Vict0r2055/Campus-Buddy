@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -26,14 +27,15 @@ class BottomNavigation extends StatelessWidget {
                   icon: Icon(
                     Icons.home_outlined,
                     size: 35,
-                    color: getCurrentRoute() == '/home_page'
+                    color: getCurrentRoute() == '/chatbot'
                         ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
-                  label: 'Home',
-                  routeName: '/home_page',
+                  label: 'Chatbot',
+                  routeName: '/chatbot',
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(
                     bottom: 8.0), // Add bottom padding here
@@ -48,6 +50,22 @@ class BottomNavigation extends StatelessWidget {
                   ),
                   label: 'My Timetable',
                   routeName: '/my_timetable',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 8.0), // Add bottom padding here
+                child: BottomNavigationItem(
+                  context: context,
+                  icon: Icon(
+                    Icons.book_online_outlined,
+                    size: 35,
+                    color: getCurrentRoute() == '/home_page'
+                        ? const Color(0xFF157D9E)
+                        : Colors.grey,
+                  ),
+                  label: 'Exams',
+                  routeName: '/about_page',
                 ),
               ),
               Padding(
@@ -72,32 +90,32 @@ class BottomNavigation extends StatelessWidget {
                 child: BottomNavigationItem(
                   context: context,
                   icon: Icon(
-                    Icons.chat_outlined,
+                    Icons.camera_alt,
                     size: 35,
-                    color: getCurrentRoute() == '/chatbot'
+                    color: getCurrentRoute() == '/qr_scanner'
                         ? const Color(0xFF157D9E)
                         : Colors.grey,
                   ),
-                  label: 'Chatbot',
-                  routeName: '/chatbot',
+                  label: 'Scanner',
+                  routeName: '/qr_scanner',
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 8.0), // Add bottom padding here
-                child: BottomNavigationItem(
-                  context: context,
-                  icon: Icon(
-                    Icons.settings_outlined,
-                    size: 35,
-                    color: getCurrentRoute() == '/navigation_page'
-                        ? const Color(0xFF157D9E)
-                        : Colors.grey,
-                  ),
-                  label: 'Settings',
-                  routeName: 'navigation_page',
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       bottom: 8.0), // Add bottom padding here
+              //   child: BottomNavigationItem(
+              //     context: context,
+              //     icon: Icon(
+              //       Icons.settings_outlined,
+              //       size: 35,
+              //       color: getCurrentRoute() == '/navigation_page'
+              //           ? const Color(0xFF157D9E)
+              //           : Colors.grey,
+              //     ),
+              //     label: 'Settings',
+              //     routeName: 'navigation_page',
+              //   ),
+              // ),
             ],
           ),
         ),

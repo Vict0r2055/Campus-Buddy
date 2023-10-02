@@ -8,7 +8,8 @@ import 'dart:convert';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:xml/xml.dart';
 import 'package:hive/hive.dart';
-import 'package:campus_buddy/reusable_widgets.dart';
+// import 'package:campus_buddy/reusable_widgets.dart';
+import 'my_timetable.dart';
 
 class Item {
   final String name;
@@ -108,8 +109,17 @@ class _MyModulesState extends State<MyModules> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // print(fileNames);
+          // Call the downloadEventsFromStorage function
           downloadEventsFromStorage(fileNames, context);
+
+          // Navigate to my_timetable.dart
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  const MyTimetable(), // Replace with your actual page/widget
+            ),
+          );
         },
         child: const Icon(Icons.done),
       ),
@@ -185,10 +195,10 @@ Future<List<Event>> getEventsFromHive() async {
 
 void printing(events) {
   events.forEach((event) {
-    print(event.title);
-    print(event.startTime);
-    print(event.day);
-    print(event.room);
+    // print(event.title);
+    // print(event.startTime);
+    // print(event.day);
+    // print(event.room);
   });
 }
 
@@ -196,7 +206,7 @@ Future<List<Event>> downloadEventsFromStorage(
     List<String> fileNames, BuildContext context) async {
   final storage = FirebaseStorage.instance;
   List<Event> events = [];
-  print("boy doing things");
+  // print("boy doing things");
   for (String fileName in fileNames) {
     final file = storage.ref().child('/timetableData/$fileName');
     final Uint8List? document = await file.getData();
@@ -221,10 +231,10 @@ Future<List<Event>> downloadEventsFromStorage(
       ));
     }
   }
-  print("never in doubt ");
-  showCustomSnackbar(context, "never in doubt ");
+  // print("never in doubt ");
+  // showCustomSnackbar(context, "never in doubt ");
   saveEventsToHive(events);
-  showCustomSnackbar(context, "weeee ayii iqedile boi ayikasebenzi namanje");
-  print("weeee ayii iqedile boi ayikasebenzi namanje");
+  // showCustomSnackbar(context, "weeee ayii iqedile boi ayikasebenzi namanje");
+  // print("weeee ayii iqedile boi ayikasebenzi namanje");
   return events;
 }

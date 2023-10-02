@@ -42,6 +42,10 @@ class NavBar extends StatelessWidget {
           Container(
             color: const Color.fromARGB(255, 0, 97, 175),
             child: const UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(
+                    255, 0, 97, 175), // Change this to your desired color
+              ),
               accountName: Text('luyanda mpanza'),
               accountEmail: Text('luyasmpanza@gmail.com'),
               currentAccountPicture: CircleAvatar(
@@ -50,14 +54,6 @@ class NavBar extends StatelessWidget {
               ),
             ),
           ),
-          // const UserAccountsDrawerHeader(
-          //   accountName: Text('luyanda mpanza'),
-          //   accountEmail: Text('luyasmpanza@gmail.com'),
-          //   currentAccountPicture: CircleAvatar(
-          //     backgroundColor: Colors.transparent,
-          //     backgroundImage: AssetImage('images/profile.jpg'),
-          //   ),
-          // ),
           ListTile(
             leading: const Icon(Icons.menu_book_outlined),
             title: const Text('My Modules'),

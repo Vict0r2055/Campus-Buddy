@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:campus_buddy/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,9 +16,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _userNameTextController = TextEditingController();
   // List<String> _selectedFaculties = []; // Store the selected faculties
   String? _dropdownValue; // Store the selected value
   String? _dropdownValue2;
@@ -176,7 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     password: _passwordTextController.text,
                   )
                       .then((value) {
-                    print("Created New Account");
+                    showCustomSnackbar(context, "Created New Account");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -184,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     );
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    showCustomSnackbar(context, "Error ${error.toString()}");
                   });
                 }),
               ],
@@ -199,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (selectedValue is String) {
       setState(() {
         _dropdownValue = selectedValue;
-        print(_dropdownValue);
+        // print(_dropdownValue);
       });
     }
   }
@@ -208,7 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (selectedValue2 is String) {
       setState(() {
         _dropdownValue2 = selectedValue2;
-        print(_dropdownValue2);
+        // print(_dropdownValue2);
       });
     }
   }
@@ -217,7 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (selectedValue3 is String) {
       setState(() {
         _dropdownValue3 = selectedValue3;
-        print(_dropdownValue3);
+        // print(_dropdownValue3);
       });
     }
   }

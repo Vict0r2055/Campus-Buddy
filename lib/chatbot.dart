@@ -1,67 +1,10 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'app_bar.dart';
 import 'package:campus_buddy/bottom_nav.dart';
-
-// class ChatbotScreen extends StatefulWidget {
-//   const ChatbotScreen({super.key});
-
-//   @override
-//   _ChatbotScreenState createState() => _ChatbotScreenState();
-// }
-
-// class _ChatbotScreenState extends State<ChatbotScreen> {
-//   String chatbotResponse = '';
-
-//   Future<void> sendChatbotRequest() async {
-//     // Define the URL of your Flask chatbot endpoint
-//     var url = Uri.parse('http://192.168.56.1:5000/api/chatbot');
-
-//     // Define the input text in a map
-//     var payload = {'input_text': 'what is the universities mission statement.'};
-
-//     // Send a POST request with JSON payload
-//     var response = await http.post(
-//       url,
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: jsonEncode(payload),
-//     );
-
-//     // Check the response status code
-//     if (response.statusCode == 200) {
-//       // Parse the JSON response
-//       Map<String, dynamic> data = jsonDecode(response.body);
-//       var chatbotResponseText = data['response'];
-//       setState(() {
-//         chatbotResponse = chatbotResponseText;
-//         print(chatbotResponse);
-//       });
-//     } else {
-//       setState(() {
-//         chatbotResponse = 'Error: ${response.statusCode}';
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: const MyAppBar(),
-//       drawer: const NavBar(),
-//       bottomNavigationBar: const BottomNavigation(),
-//       body: Container(
-//         // Wrap the body in a Container to set the background color
-//         color: Colors.black26, // Set your desired background color here
-//         child: const Center(
-//           child: Text('Home'),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -77,7 +20,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<void> sendChatbotRequest(String load) async {
     // Define the URL of your Flask chatbot endpoint
-    var url = Uri.parse('http://ec2-16-171-177-132.eu-north-1.compute.amazonaws.com:5000/api/chatbot');
+    var url = Uri.parse(
+        'http://ec2-16-171-177-132.eu-north-1.compute.amazonaws.com:5000/api/chatbot');
 
     // Define the input text in a map
     var payload = {'input_text': load};
@@ -102,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ChatbotMessage(
           text: chatbotResponse,
         );
-        print(chatbotResponse);
+        // print(chatbotResponse);
       });
     } else {
       setState(() {
