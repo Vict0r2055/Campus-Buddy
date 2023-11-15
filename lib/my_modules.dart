@@ -6,17 +6,26 @@ import 'package:firebase_database/firebase_database.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:xml/xml.dart';
 import 'package:hive/hive.dart';
-// import 'package:campus_buddy/reusable_widgets.dart';
-import 'my_timetable.dart';
+import 'package:campus_buddy/reusable_widgets.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'my_timetable.dart';
 
 class Item {
+  final String code;
   final String name;
   final String description;
   bool selected;
 
-  Item({required this.name, required this.description, this.selected = false});
+  Item(
+      {required this.code,
+      required this.name,
+      required this.description,
+      this.selected = false});
 }
 
 class MyModules extends StatefulWidget {
@@ -32,6 +41,7 @@ class _MyModulesState extends State<MyModules> {
   late List<Item> filteredList;
   List<Item> selectedItems = [];
   List<String> fileNames = [];
+  List<String> moduleCodes = [];
 
   final FirebaseDatabase database = FirebaseDatabase.instance;
 
@@ -50,6 +60,7 @@ class _MyModulesState extends State<MyModules> {
       itemList.clear();
       items?.forEach((key, value) {
         itemList.add(Item(
+          code: key,
           name: value['text'],
           description: value['value'],
         ));
@@ -75,9 +86,12 @@ class _MyModulesState extends State<MyModules> {
       if (item.selected) {
         selectedItems.add(item);
         fileNames.add(item.description);
+        moduleCodes.add(item.code);
+        // print(fileNames);
       } else {
         selectedItems.remove(item);
         fileNames.remove(item.description);
+        moduleCodes.remove(item.code);
       }
     });
   }
@@ -110,16 +124,21 @@ class _MyModulesState extends State<MyModules> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Call the downloadEventsFromStorage function
+          // print(selectedItems);
+          // print(moduleCodes);
           downloadEventsFromStorage(fileNames, context);
+          showCustomSnackbar(context, "Done navigate to timetable page");
 
+          saveListToFirebase(moduleCodes);
+          saveModuleCodesToHive(moduleCodes);
           // Navigate to my_timetable.dart
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  const MyTimetable(), // Replace with your actual page/widget
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) =>
+          //         const MyTimetable(), // Replace with your actual page/widget
+          //   ),
+          // );
         },
         child: const Icon(Icons.done),
       ),
@@ -202,6 +221,22 @@ void printing(events) {
   });
 }
 
+Future<void> saveModuleCodesToHive(List<String> moduleCodes) async {
+  try {
+    await Hive.initFlutter();
+
+    // Open the Hive box for module codes
+    final moduleCodesBox = await Hive.openBox<List<String>>('moduleCodes');
+
+    // Simply put the data into the box
+    moduleCodesBox.put('moduleCodes', moduleCodes);
+    readAndPrintModuleCodesFromHive();
+  } catch (error) {
+    print("Error saving module codes to Hive: $error");
+    // Handle the error as needed
+  }
+}
+
 Future<List<Event>> downloadEventsFromStorage(
     List<String> fileNames, BuildContext context) async {
   final storage = FirebaseStorage.instance;
@@ -237,4 +272,45 @@ Future<List<Event>> downloadEventsFromStorage(
   // showCustomSnackbar(context, "weeee ayii iqedile boi ayikasebenzi namanje");
   // print("weeee ayii iqedile boi ayikasebenzi namanje");
   return events;
+}
+
+Future<void> saveListToFirebase(List<String> data) async {
+  final reference = FirebaseDatabase.instance.ref().child('users');
+
+  User? user = FirebaseAuth.instance.currentUser;
+  // print(user);
+  // List<String>? codes;
+
+  try {
+    // Use the UID of the authenticated user to identify them
+    await reference.child(user!.uid).update({
+      'modules': data,
+    });
+  } catch (error) {
+    // Handle any errors, such as network issues
+    print("Error: $error");
+  }
+}
+
+Future<void> readAndPrintModuleCodesFromHive() async {
+  try {
+    // Open the Hive box for module codes
+    final moduleCodesBox = await Hive.openBox<List<String>>('moduleCodes');
+
+    // Retrieve the list from the box
+    final List<String>? moduleCodes = moduleCodesBox.get('moduleCodes');
+
+    // Print each element in the list
+    if (moduleCodes != null) {
+      print(moduleCodes);
+      for (String code in moduleCodes) {
+        print(code);
+      }
+    } else {
+      print("Module codes list is empty or not found in Hive box.");
+    }
+  } catch (error) {
+    print("Error reading module codes from Hive: $error");
+    // Handle the error as needed
+  }
 }

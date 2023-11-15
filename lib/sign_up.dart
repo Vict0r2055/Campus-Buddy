@@ -1,12 +1,14 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:campus_buddy/home_page.dart';
+// import 'package:campus_buddy/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 import 'app_bar.dart';
 import 'reusable_widgets.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:campus_buddy/chatbot.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -177,15 +179,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     email: _emailTextController.text,
                     password: _passwordTextController.text,
                   )
-                      .then((value) {
+                      .then((userCredential) {
+                    // User registration was successful
+                    // Now write user data to the database
+                    writeUserDataToDatabase(
+                      userId: userCredential.user!.uid, // Unique user ID
+                      faculty: _dropdownValue,
+                      department1: _dropdownValue2,
+                      department2: _dropdownValue3,
+                      studentStaffNumber: _userNameTextController.text,
+                      email: _emailTextController.text,
+                      // password: _passwordTextController.text,
+                    );
+
                     showCustomSnackbar(context, "Created New Account");
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomePage(),
+                        builder: (context) => const ChatScreen(),
                       ),
                     );
-                  }).onError((error, stackTrace) {
+                  }).catchError((error) {
                     showCustomSnackbar(context, "Error ${error.toString()}");
                   });
                 }),
@@ -222,5 +236,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
         // print(_dropdownValue3);
       });
     }
+  }
+}
+
+Future<void> writeUserDataToDatabase({
+  String? userId, // The unique user ID
+  String? faculty,
+  String? department1,
+  String? department2,
+  String? studentStaffNumber,
+  String? email,
+  // String? password,
+}) async {
+  final reference = FirebaseDatabase.instance.ref().child('users');
+
+  try {
+    await reference.child(userId!).set({
+      'faculty': faculty,
+      'department1': department1,
+      'department2': department2,
+      'studentStaffNumber': studentStaffNumber,
+      'email': email,
+      // 'password': password,
+    });
+
+    // Data has been successfully written to the database
+    print('User data has been written to the database');
+  } catch (error) {
+    // Handle any errors that occur during the database write operation
+    print('Error writing user data to the database: $error');
   }
 }

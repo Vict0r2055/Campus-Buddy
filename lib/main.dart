@@ -1,4 +1,4 @@
-import 'package:campus_buddy/about_page.dart';
+import 'package:campus_buddy/examinations.dart';
 import 'package:campus_buddy/admin_panel.dart';
 import 'package:campus_buddy/my_modules.dart';
 import 'package:campus_buddy/sign_in.dart';
@@ -8,7 +8,7 @@ import 'package:campus_buddy/bottom_nav.dart';
 import 'chatbot.dart';
 import 'home_page.dart';
 import 'my_timetable.dart';
-import 'examinations.dart';
+import 'calendar.dart';
 import 'app_bar.dart';
 import 'firebase_options.dart';
 // import 'package:hive/hive.dart';
@@ -19,6 +19,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(EventAdapter());
+  // Hive.registerAdapter(EventAdapter());
+  // await Hive.openBox<Event>('events');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

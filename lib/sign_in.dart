@@ -1,5 +1,4 @@
 import 'package:campus_buddy/chatbot.dart';
-import 'package:campus_buddy/home_page.dart';
 import 'package:campus_buddy/reusable_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()));
+                            builder: (context) => const ChatScreen()));
                   }).onError((error, stackTrace) {
                     showCustomSnackbar(context, "Error ${error.toString()}");
                   });
@@ -66,7 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                vistorOption(),
+                // vistorOption(),
                 signUpOption(),
               ],
             ),

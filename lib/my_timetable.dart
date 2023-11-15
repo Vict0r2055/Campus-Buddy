@@ -49,7 +49,7 @@ class _MyTimetableState extends State<MyTimetable> {
   Widget _buildTabContent(List<Event> events, String day) {
     final filteredEvents = events.where((event) => event.day == day).toList();
     if (filteredEvents.isEmpty) {
-      return Center(child: Text('No events for $day'));
+      return Center(child: Text('No events for today'));
     }
     filteredEvents.sort((a, b) => a.startTime.compareTo(b.startTime));
     return Column(
